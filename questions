@@ -1,0 +1,74 @@
+-----------------------------------------------------------------------------------------------------------
+                                  PRACTICE QUESTION AND SQL SOLUTION
+-----------------------------------------------------------------------------------------------------------
+
+
+--ques.1) write an sql query to find the top 5 most-ordered dishes from a given resturant.
+
+```sql
+-- Table: orders
+-- Columns: orderid,dishname,resturant,quantity, orderdate
+```
+
+--solution 01.) -----MYSQL,POSTGRESQL
+select dishname,sum(quantity) as total_orders
+from orders
+where resturant ="R101"
+group by dishname
+order by total_orders desc
+limit 5;
+
+------SQL SERVER
+select top 5 dishname,sum(quantity) as total_orders
+from orders
+where resturant ="R101"
+group by dishname
+order by total orders DESC;
+
+------ORACLE
+SELECT DISHNAME,SUM(QUANTITY) AS TOTAL_ORDERS
+FROM ORDERS
+WHERE RESTURANT='R101'
+GROUP BY DISHNAME
+ORDER BY TOTAL_ORDERS DESC
+FETCH FIRST 5 ROWS ONLY;  
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+--ques.2) write aquery to retrieve all the orders placed in the last 30 days for
+a specific user.
+
+```sql
+-- Table: orders
+-- Columns: orderid,userid,dishname, orderdate,amount
+```
+
+
+---solution 02.)
+
+select dishname , sum(amount) as total_orders
+from orders
+where userid='u123' and orderdate>=date_sub(curdate(),interval 30 days);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
